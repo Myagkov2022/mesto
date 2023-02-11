@@ -1,23 +1,23 @@
 .profile__info {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    justify-content: center;
-    gap: 3px;
-    max-width: 400px;
+    display: grid;
+    grid-template-columns: 1fr minmax(min-content, max-content);
+    grid-template-rows: repeat(2, minmax(min-content, max-content));
+    align-content: center;
+    column-gap: 18px;
 }
 
 
 @media screen and (max-width: 1000px) {
     .profile__info {
-        align-items: center;
-        margin-bottom: 34px;
+        justify-items: center;
+        margin-bottom: 33px;
     }
 }
 
 @media screen and (max-width: 500px) {
     .profile__info {
-        gap: 7px;
-        max-width: 190px;
+        margin-left: 27px;
+        row-gap: 7px;
+        column-gap: 10px;
     }
 }

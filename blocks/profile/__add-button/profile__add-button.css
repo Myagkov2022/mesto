@@ -1,7 +1,8 @@
 .profile__add-button {
     margin-left: auto;
     padding: 23px 73px;
-    border: 1px solid var(--white-color);
+    border-radius: 2px;
+    border: 2px solid var(--white-color);
     background: url("../../../images/add-btn.svg") no-repeat center;
     align-self: center;
     cursor: pointer;

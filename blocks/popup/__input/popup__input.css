@@ -12,7 +12,7 @@
     outline: none;
 }
 
-.popup__input:nth-child(2) {
+.popup__input:last-of-type {
     margin-bottom: 37px;
 }
 
@@ -20,7 +20,7 @@
     .popup__input {
         margin-bottom: 20px;
     }
-    .popup__input:nth-child(2) {
+    .popup__input:last-of-type {
         margin-bottom: 45px;
     }
 }

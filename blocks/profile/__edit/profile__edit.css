@@ -1,7 +1,6 @@
 .profile__edit {
-    position: absolute;
-    top: 38px;
-    right: -43px;
+    grid-column: 2/3;
+    grid-row: 1/2;
     width: 24px;
     height: 24px;
     border: 1px solid var(--white-color);
@@ -16,17 +15,9 @@
     opacity: .6;
 }
 
-@media screen and (max-width: 1000px) {
-    .profile__edit {
-        top: 20px;
-    }
-}
-
 @media screen and (max-width: 500px) {
     .profile__edit {
         width: 18px;
         height: 18px;
-        top: 8px;
-        right: -28px;
     }
 }

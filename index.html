@@ -17,9 +17,9 @@
                <div class="profile__info">
                    <h1 class="profile__name">Жак-Ив Кусто</h1>
                    <p class="profile__description">Исследователь океана</p>
-                   <button class="profile__edit"></button>
+                   <button class="profile__edit" type="button"></button>
                </div>
-               <button class="profile__add-button"></button>
+               <button class="profile__add-button" type="button"></button>
            </section>
             <section class="elements content__elements">
                 <ul class="elements__list">
@@ -27,42 +27,42 @@
                         <img class="element__image" src="./images/karachaevsk.jpg" alt="Фотография Карачаевска">
                         <div class="element__description">
                             <h2 class="element__heading">Карачаевск</h2>
-                            <button class="element__heart"></button>
+                            <button class="element__heart" type="button"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/elbrus-1.jpg" alt="Фотография Горы Эльбрус">
                         <div class="element__description">
                             <h2 class="element__heading">Гора Эльбрус</h2>
-                            <button class="element__heart"></button>
+                            <button class="element__heart" type="button"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/dombai-1.jpg" alt="Фотография Домбая">
                         <div class="element__description">
                             <h2 class="element__heading">Домбай</h2>
-                            <button class="element__heart"></button>
+                            <button class="element__heart" type="button"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/elbrus-2.jpg" alt="Фотография Горы Эльбрус">
                         <div class="element__description">
                             <h2 class="element__heading">Гора Эльбрус</h2>
-                            <button class="element__heart"></button>
+                            <button class="element__heart" type="button"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/dombai-2.jpg" alt="Фотография Домбая">
                         <div class="element__description">
                             <h2 class="element__heading">Домбай</h2>
-                            <button class="element__heart"></button>
+                            <button class="element__heart" type="button"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img class="element__image" src="./images/karachaevo.jpg" alt="Фотография Карачаево-Черкесия">
                         <div class="element__description">
                             <h2 class="element__heading">Карачаево-Черкесия</h2>
-                            <button class="element__heart"></button>
+                            <button class="element__heart" type="button"></button>
                         </div>
                     </li>
                 </ul>
@@ -74,15 +74,15 @@
         <div class="popup">
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <button class="popup__close-btn"></button>
-                <form class="popup__form">
-                    <input id="popup-name" type="text" class="popup__input" placeholder="Введите свое имя">
-                    <input id="popup-description" type="text" class="popup__input"  placeholder="О себе">
-                    <button class="popup__save">Сохранить</button>
+                <button class="popup__close-btn" type="button"></button>
+                <form class="popup__form" name="form-profile">
+                    <input id="popup-name" name="profile-name" type="text" class="popup__input" placeholder="Введите свое имя">
+                    <input id="popup-description" name="popup-description" type="text" class="popup__input"  placeholder="О себе">
+                    <button class="popup__save" type="submit">Сохранить</button>
                 </form>
             </div>
         </div>
     </div>
-    <script src="./scripts/script.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 </html>
