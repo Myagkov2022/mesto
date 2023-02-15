@@ -1,7 +1,7 @@
 const editButton = document.querySelector(".profile__edit");
 let profileName = document.querySelector(".profile__name");
 let profileDescription = document.querySelector(".profile__description");
-const addButton = document.querySelector(".profile__add-button")
+const addButton = document.querySelector(".profile__add-button");
 
 const popupProfile = document.querySelector(".popup_type_profile");
 const editClose = popupProfile.querySelector(".popup__close-btn");
@@ -11,13 +11,19 @@ const popupFormEdit = popupProfile.querySelector(".popup__form");
 
 const popupNewElement = document.querySelector(".popup_type_new-element");
 let popupElementTitle = popupNewElement.querySelector("#popup-title");
-let popupElementLink = popupNewElement.querySelector('#popup-link');
+let popupElementLink = popupNewElement.querySelector("#popup-link");
 const addClose = popupNewElement.querySelector(".popup__close-btn");
 const popupFormAdd = popupNewElement.querySelector(".popup__form");
 
 
-const elementTemplate = document.querySelector('.element-template').content;
-const elementList = document.querySelector(".elements__list")
+const elementTemplate = document.querySelector(".element-template").content;
+const elementList = document.querySelector(".elements__list");
+
+const popupTypeImage = document.querySelector(".popup_type_image");
+let popupImage = popupTypeImage.querySelector(".popup__image");
+let popupCaption = popupTypeImage.querySelector(".popup__figcaption");
+const imageClose = popupTypeImage.querySelector(".popup__close-btn");
+
 
 
 const initialCards = [
@@ -48,10 +54,10 @@ const initialCards = [
 ];
 
 function popupOpen(popupElement) {
-    popupElement.classList.add('popup_opened');
+    popupElement.classList.add("popup_opened");
 }
 function popupClose(popupElement) {
-    popupElement.classList.remove('popup_opened')
+    popupElement.classList.remove("popup_opened")
 }
 
 function handleEditFormSubmit (evt) {
@@ -64,27 +70,33 @@ function handleEditFormSubmit (evt) {
 function handleAddFormSubmit (evt) {
     evt.preventDefault();
     initialCards.unshift({name: popupElementTitle.value, link: popupElementLink.value})
-    console.log(initialCards)
     elementList.prepend(addElement(initialCards[0]))
-
     popupClose(popupNewElement);
 }
 
 function addElement(element) {
     const elementItem = elementTemplate.cloneNode(true);
-    const deleteButton = elementItem.querySelector('.element__trash');
-    console.log(deleteButton)
-    elementItem.querySelector('.element__image').src = element.link;
-    elementItem.querySelector('.element__image').alt = " На фотографии: " + element.name;
+    const deleteButton = elementItem.querySelector(".element__trash");
+    let elementImage = elementItem.querySelector(".element__image");
+
     elementItem.querySelector('.element__heading').textContent = element.name;
+    elementImage.src = element.link;
+    elementImage.alt = element.name;
     elementItem.querySelector('.element__heart').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__heart_active');
+        evt.target.classList.toggle("element__heart_active");
     })
 
-    deleteButton.addEventListener('click',  () => {
+    deleteButton.addEventListener("click",  () => {
          const listItem = deleteButton.closest('.element');
          listItem.remove();
     })
+
+    elementImage.addEventListener("click", () => {
+        popupOpen(popupTypeImage);
+        popupImage.src = elementImage.src;
+        popupCaption.textContent = elementImage.alt;
+    })
+
     return elementItem
 }
 initialCards.forEach(function (element) {
@@ -100,10 +112,11 @@ editButton.addEventListener("click", () => {
 addButton.addEventListener("click",  () => popupOpen(popupNewElement));
 editClose.addEventListener("click",  () => popupClose(popupProfile));
 addClose.addEventListener("click",  () => popupClose(popupNewElement));
-
+imageClose.addEventListener("click", () => popupClose(popupTypeImage))
 
 popupFormEdit.addEventListener("submit", handleEditFormSubmit)
 popupFormAdd.addEventListener("submit",handleAddFormSubmit )
+
 
 
 
