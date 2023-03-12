@@ -26,6 +26,7 @@ const closeButtons = document.querySelectorAll('.popup__close-btn');
 const popups = document.querySelectorAll('.popup');
 
 
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -64,8 +65,8 @@ function closePopup(popupElement) {
 
 const closePopupEsc = (evt) => {
     evt.preventDefault();
-    const popup = document.querySelector('.popup_opened');
     if (evt.key === 'Escape') {
+        const popup = document.querySelector('.popup_opened');
         closePopup(popup);
     }
 };
@@ -83,6 +84,9 @@ function handleAddFormSubmit (evt) {
     const item  = {name: popupElementTitle.value, link: popupElementLink.value}
     elementList.prepend(addElement(item))
     popupFormAdd.reset();
+
+    const popupSubmitAddButton = popupFormAdd.querySelector('.form__submit')
+    popupSubmitAddButton.setAttribute('disabled', 'disabled');
     closePopup(popupNewElement);
 
 }
