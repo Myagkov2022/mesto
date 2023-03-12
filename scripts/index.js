@@ -23,6 +23,7 @@ const popupCaption = popupTypeImage.querySelector(".popup__figcaption");
 
 const closeButtons = document.querySelectorAll('.popup__close-btn');
 
+const popups = document.querySelectorAll('.popup');
 
 
 const initialCards = [
@@ -54,10 +55,20 @@ const initialCards = [
 
 function openPopup(popupElement) {
     popupElement.classList.add("popup_opened");
+    document.addEventListener('keyup', closePopupEsc);
 }
 function closePopup(popupElement) {
-    popupElement.classList.remove("popup_opened")
+    popupElement.classList.remove("popup_opened");
+    document.removeEventListener('keyup', closePopupEsc);
 }
+
+const closePopupEsc = (evt) => {
+    evt.preventDefault();
+    const popup = document.querySelector('.popup_opened');
+    if (evt.key === 'Escape') {
+        closePopup(popup);
+    }
+};
 
 function handleEditFormSubmit (evt) {
     evt.preventDefault();
@@ -71,9 +82,9 @@ function handleAddFormSubmit (evt) {
 
     const item  = {name: popupElementTitle.value, link: popupElementLink.value}
     elementList.prepend(addElement(item))
-    popupElementTitle.value = "";
-    popupElementLink.value = "";
+    popupFormAdd.reset();
     closePopup(popupNewElement);
+
 }
 
 function addElement(element) {
@@ -116,9 +127,16 @@ closeButtons.forEach((button) => {
     button.addEventListener('click', () => closePopup(popup));
 });
 
+popups.forEach((popup) => {
+    popup.addEventListener('click', evt => {
+        if (evt.target === evt.currentTarget) closePopup(evt.target);
+    });
+});
+
 addButton.addEventListener("click",  () => openPopup(popupNewElement));
-popupFormEdit.addEventListener("submit", handleEditFormSubmit)
-popupFormAdd.addEventListener("submit",handleAddFormSubmit )
+popupFormEdit.addEventListener("submit", handleEditFormSubmit);
+popupFormAdd.addEventListener("submit",handleAddFormSubmit );
+
 
 
 

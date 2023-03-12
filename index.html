@@ -33,10 +33,14 @@
             <div class="popup__container">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <button class="popup__close-btn" type="button"></button>
-                <form class="popup__form" name="form-profile">
-                    <input id="popup-name" name="profile-name" type="text" class="popup__input" placeholder="Введите свое имя">
-                    <input id="popup-description" name="popup-description" type="text" class="popup__input"  placeholder="О себе">
-                    <button class="popup__save" type="submit">Сохранить</button>
+                <form class= "popup__form form" name="form-profile" novalidate>
+                    <fieldset class="form__set">
+                        <input id="popup-name" name="profile-name" type="text" class="form__input" placeholder="Введите свое имя"  minlength="2" maxlength="40" required>
+                        <span id="popup-name-error" class="form__input-error"></span>
+                        <input id="popup-description" name="popup-description" type="text" class="form__input"  placeholder="О себе" minlength="2"  maxlength="200" required>
+                        <span id="popup-description-error" class="form__input-error"></span>
+                        <button class="form__submit" type="submit">Сохранить</button>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -44,10 +48,14 @@
             <div class="popup__container">
                 <h2 class="popup__title">Новое место</h2>
                 <button class="popup__close-btn" type="button"></button>
-                <form class="popup__form" name="form-add">
-                    <input id="popup-title" name="profile-title" type="text" class="popup__input" placeholder="Название">
-                    <input id="popup-link" name="popup-link" type="text" class="popup__input"  placeholder="Ссылка на картинку">
-                    <button class="popup__save" type="submit">Сохранить</button>
+                <form class="popup__form form" name="form-add" novalidate>
+                    <fieldset class="form__set">
+                        <input id="popup-title" name="profile-title" type="text" class="form__input" placeholder="Название"   minlength="2" maxlength="30" required>
+                        <span id="popup-title-error" class="form__input-error"></span>
+                        <input id="popup-link" name="popup-link" type="url" class="form__input"  placeholder="Ссылка на картинку" required>
+                        <span id="popup-link-error" class="form__input-error"></span>
+                        <button class="form__submit" type="submit">Сохранить</button>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -72,5 +80,6 @@
         </li>
     </template>
     <script src="scripts/index.js"></script>
+    <script src="scripts/validate.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-.popup__save {
+.form__submit {
     width: 100%;
     background: var(--black-color);
     font-weight: 400;
@@ -10,15 +10,23 @@
     border-radius: 2px;
     border: none;
     transition: 0.3s ease-in;
+    margin-top: 30px;
 }
 
-.popup__save:hover {
+.form__submit:hover {
     background-color: rgba(0,0,0,.8);
 }
 
+.form__submit:disabled {
+    opacity: 0.2;
+    color: var(--black-color);
+    border: 1px solid  var(--black-color);
+    background-color:  var(--white-color);
+}
 
 @media screen and (max-width: 500px) {
-    .popup__save {
+    .form__submit {
+        margin-top: 45px;
         padding: 14px 82px;
         font-size: 14px;
         line-height: 17px;
