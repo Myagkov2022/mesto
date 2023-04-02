@@ -1,18 +1,23 @@
 export default class Card {
-    constructor(data, templateSelector) {
+    constructor(data, handleOpenPopup, templateSelector) {
         this._link = data.link;
         this._name = data.name;
         this._templateSelector = templateSelector;
+        this._handleOpenPopup = handleOpenPopup;
     }
 
     _handleLike() {
-        const likeBtn = this._element.querySelector('.element__heart');
-        likeBtn.classList.toggle('element__heart_active');
+        this._heart.classList.toggle('element__heart_active');
     }
 
     _handleDelete() {
-        this._element.remove()
-        this._element = null
+        this._element.remove();
+        this._link = null;
+        this._name = null;
+        this._templateSelector = null;
+        this._image = null;
+        this._heart = null;
+        this._element = null;
     }
     _getTemplate() {
         const cardElement = document
@@ -27,15 +32,18 @@ export default class Card {
         this._element.querySelector('.element__trash').addEventListener('click', () => {
             this._handleDelete();
         })
-        // слушатель кнопки лайк
-        this._element.querySelector('.element__heart').addEventListener('click', () => {
+        this._heart.addEventListener('click', () => {
             this._handleLike();
+        })
+        this._image.addEventListener('click', () => {
+            this._handleOpenPopup(this._name, this._link)
         })
     }
 
     generateCard() {
         this._element = this._getTemplate();
         this._image = this._element.querySelector('.element__image');
+        this._heart =  this._element.querySelector('.element__heart');
         this._setEventListeners();
 
         this._image.src = this._link;

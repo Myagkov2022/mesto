@@ -10,7 +10,6 @@
     border-radius: 2px;
     border: none;
     transition: 0.3s ease-in;
-    margin-top: 30px;
 }
 
 .form__submit:hover {
@@ -26,7 +25,6 @@
 
 @media screen and (max-width: 500px) {
     .form__submit {
-        margin-top: 45px;
         padding: 14px 82px;
         font-size: 14px;
         line-height: 17px;
