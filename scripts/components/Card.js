@@ -1,5 +1,5 @@
 export default class Card {
-    constructor(data, handleOpenPopup, templateSelector) {
+    constructor({data, handleOpenPopup, templateSelector}) {
         this._link = data.link;
         this._name = data.name;
         this._templateSelector = templateSelector;
@@ -12,20 +12,17 @@ export default class Card {
 
     _handleDelete() {
         this._element.remove();
-        this._link = null;
-        this._name = null;
         this._templateSelector = null;
         this._image = null;
         this._heart = null;
         this._element = null;
     }
     _getTemplate() {
-        const cardElement = document
+        return document
             .querySelector(this._templateSelector)
             .content
             .querySelector('.element')
             .cloneNode(true);
-        return cardElement;
     }
 
     _setEventListeners() {
