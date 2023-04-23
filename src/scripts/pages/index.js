@@ -28,12 +28,12 @@ function createElement(element) {
     return  card.generateCard();
 }
 
-const defaultList = new Section({
+const cardsList = new Section({
     items:initialCards,
-    renderer: item =>  defaultList.addItem(createElement(item))
+    renderer: item =>  cardsList.addItem(createElement(item))
 }, ".elements__list")
 
-defaultList.renderItems()
+cardsList.renderItems()
 
 const formEditProfileValidator = new FormValidator(validationSettings, popupFormEdit);
 formEditProfileValidator.enableValidation();
@@ -47,8 +47,7 @@ popupImage.setEventListeners()
 const popupNewElement = new PopupWithForm({
     selectorPopup:'.popup_type_new-element',
     handleSubmitForm: (newCardData) => {
-        defaultList.addItem( createElement(newCardData))
-        popupNewElement.close()
+        cardsList.addItem( createElement(newCardData))
     }
 })
 
@@ -58,13 +57,15 @@ const popupProfile = new PopupWithForm({
     selectorPopup:'.popup_type_profile',
     handleSubmitForm: (profileData) => {
         userInfo.setUserInfo(profileData)
-        popupProfile.close()
     }
 })
 
 popupProfile.setEventListeners()
 
-addButton.addEventListener("click",  () =>  popupNewElement.open() );
+addButton.addEventListener("click",  () =>  {
+    popupNewElement.open()
+    formAddNewCardValidator.toggleButtonState()
+});
 editButton.addEventListener("click",() => {
     const user = userInfo.getUserInfo()
     editName.value = user.name
