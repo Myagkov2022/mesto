@@ -1,6 +1,7 @@
 .element__heart {
     background: url("../../../images/heart.svg") no-repeat center;
     width: 22px;
+    height: 22px;
     border: none;
     cursor: pointer;
     transition: 0.3s ease-in;
