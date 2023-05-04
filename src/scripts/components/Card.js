@@ -14,8 +14,7 @@ export default class Card {
     }
 
     _handleLike() {
-        this._heart.classList.toggle('element__heart_active');
-        if (this._heart.classList.contains('element__heart_active')) {
+        if (!this._heart.classList.contains('element__heart_active')) {
             this._handleSetLike(this._cardId)
         } else {
             this._handleDeleteLike(this._cardId)
@@ -74,7 +73,7 @@ export default class Card {
         this._setEventListeners();
         this._hasTrash()
         this._hasLike()
-        this.setLikesCount(this._likes)
+        this._count.textContent = this._likes.length
         this._image.src = this._link;
         this._image.alt = this._name;
         this._element.querySelector('.element__heading').textContent = this._name;
@@ -82,7 +81,8 @@ export default class Card {
         return this._element;
     }
 
-    setLikesCount(likes) {
+    setLikes(likes) {
         this._count.textContent = likes.length
+        this._heart.classList.toggle('element__heart_active');
     }
 }

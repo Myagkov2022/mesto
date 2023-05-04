@@ -4,14 +4,14 @@ export default class Api {
         this.headers = options.headers
     }
 
+    _checkResponse(res) {
+       return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+    }
+
+
     getUserInfo() {
         return fetch(`${this.baseURL}/users/me`, {headers:this.headers})
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+             .then(res => this._checkResponse(res))
     }
 
     patchUserInfo({name, about}) {
@@ -23,22 +23,12 @@ export default class Api {
                 about: about
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then(res => this._checkResponse(res))
     }
 
     getInitialCards() {
         return fetch(`${this.baseURL}/cards`, {headers:this.headers})
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then(res => this._checkResponse(res))
     }
 
     postNewCard({name, link}) {
@@ -50,26 +40,15 @@ export default class Api {
                 link: link
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then(res => this._checkResponse(res))
     }
 
     deleteCard(cardId) {
-        console.log(cardId)
         return fetch(`${this.baseURL}/cards/${cardId}`, {
             method: 'DELETE',
             headers:this.headers,
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then(res => this._checkResponse(res))
     }
 
     patchUserAvatar({avatar}) {
@@ -80,12 +59,7 @@ export default class Api {
                avatar: avatar
             })
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then(res => this._checkResponse(res))
     }
 
     putCardLike(cardId) {
@@ -93,12 +67,7 @@ export default class Api {
             method:'PUT',
             headers:this.headers,
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then(res => this._checkResponse(res))
     }
 
     deleteCardLike(cardId) {
@@ -106,12 +75,7 @@ export default class Api {
             method:'DELETE',
             headers:this.headers,
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка: ${res.status}`)
-            })
+            .then(res => this._checkResponse(res))
     }
 
 }

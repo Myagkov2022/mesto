@@ -40,18 +40,21 @@ function createElement(element) {
             popupDelete.open(id)
             popupDelete.setDeleteHandle((id)=> {
                 api.deleteCard(id)
-                    .then(() => card.deleteElement())
+                    .then(() => {
+                        card.deleteElement()
+                        popupDelete.close()
+                    })
                     .catch(err => console.log(`Ошибка: ${err}`))
             })
         },
         handleSetLike: (cardId) => {
             api.putCardLike(cardId)
-                .then(res => card.setLikesCount(res.likes))
+                .then(res => card.setLikes(res.likes))
                 .catch(err => console.log(`Ошибка: ${err}`))
         },
         handleDeleteLike: (cardId) => {
             api.deleteCardLike(cardId)
-                .then(res =>  card.setLikesCount(res.likes))
+                .then(res =>  card.setLikes(res.likes))
                 .catch(err => console.log(`Ошибка: ${err}`))
         },
         templateSelector:'.element-template'}, userInfo.userId);
@@ -59,7 +62,7 @@ function createElement(element) {
 }
 
 const cardsList = new Section({
-    renderer: item =>  cardsList.addItem(createElement(item))
+    renderer: item =>  cardsList.addItemFromArray(createElement(item))
 }, ".elements__list")
 
 
@@ -88,11 +91,13 @@ const popupNewElement = new PopupWithForm({
     selectorPopup:'.popup_type_new-element',
     handleSubmitForm: (newCardData) => {
         api.postNewCard(newCardData)
-            .then(res => cardsList.addItem(createElement(res)))
+            .then(res => {
+                cardsList.addNewItem(createElement(res))
+                popupNewElement.close()
+            })
             .catch(err => console.log(`Ошибка: ${err}`))
             .finally(() => {
-                popupNewElement.close()
-                popupNewElement.loading()
+                popupNewElement.loading('Сохранить')
             })
     }
 })
@@ -103,11 +108,13 @@ const popupProfile = new PopupWithForm({
     selectorPopup:'.popup_type_profile',
     handleSubmitForm: (profileData) => {
         api.patchUserInfo(profileData)
-            .then(res=> userInfo.setUserInfo(res))
+            .then(res => {
+                userInfo.setUserInfo(res)
+                popupProfile.close()
+            })
             .catch(err => console.log(`Ошибка: ${err}`))
             .finally(() => {
-                popupProfile.close()
-                popupProfile.loading()
+                popupProfile.loading('Сохранить')
             })
     }
 })
@@ -125,11 +132,13 @@ const popupEditAvatar = new PopupWithForm({
     selectorPopup: '.popup_type_avatar',
     handleSubmitForm: (link) => {
         api.patchUserAvatar(link)
-            .then(res => userInfo.setUserInfo(res))
+            .then(res => {
+                userInfo.setUserInfo(res)
+                popupEditAvatar.close()
+            })
             .catch(err => console.log(`Ошибка: ${err}`))
             .finally(() => {
-                popupEditAvatar.close()
-                popupEditAvatar.loading()
+                popupEditAvatar.loading('Сохранить')
             })
 
     }
